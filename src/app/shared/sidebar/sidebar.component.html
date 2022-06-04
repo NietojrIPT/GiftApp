@@ -6,7 +6,7 @@
 
     <a
       *ngFor="let histGif of historial"
-      
+      (click) = "buscar(histGif)"
       class="list-group-item list-group-item-action"
       href="#"
     >

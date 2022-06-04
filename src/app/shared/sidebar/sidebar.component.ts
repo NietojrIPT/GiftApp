@@ -13,6 +13,11 @@ export class SidebarComponent {
   }
 
   constructor(private gifsService: GifsService){}
+
+  buscar(gifsB: string){
+    console.log(gifsB);
+    this.gifsService.buscarGifs(gifsB);
+  }
  
 
 }
