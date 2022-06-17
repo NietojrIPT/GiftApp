@@ -10,7 +10,7 @@ export class GifsService {
   private ServicioURL: string = 'https://api.giphy.com/v1/gifs';
   private _historial: string[] = [];
 
-  // TODO: Cambiar any por su typo correspondiente
+  // TODO: Cambiar any por su type correspondiente
   public result: Gif[] = [];
 
   get historial() {
@@ -26,13 +26,13 @@ export class GifsService {
   }
 
   buscarGifs(query: string = '') {
-    query = query.trim().toLocaleLowerCase();
+    query = query.trim().toLocaleLowerCase();  // pone todo el texto ingresado en minuscula
 
-    if (!this._historial.includes(query)) {
+    if (!this._historial.includes(query)) {  // compara si existe un registro con el mismo nombre que se almacena en e query
       this._historial.unshift(query);
       this._historial = this._historial.splice(0, 10);
 
-      localStorage.setItem('historial', JSON.stringify(this._historial));
+      localStorage.setItem('historial', JSON.stringify(this._historial));  //nos indica lo que va almacenar en memeoria del navegador
     }
 
     const params = new HttpParams()
@@ -43,7 +43,6 @@ export class GifsService {
     this.http
       .get<SearchGifsResponse>(`${this.ServicioURL}/search`, { params })
       .subscribe((resp) => {
-        console.log(resp.data);
         this.result = resp.data;
         localStorage.setItem('resultados', JSON.stringify(this.result));
       });
